@@ -19,22 +19,35 @@ function ls(){
 };
 
 var echo = (cmd) => {
-  var str = cmd.slice(1).join(' ');  
+  var str = cmd.slice(1).join(' ');
   console.log(str);
   //return str;
 };
 
 var cat = (filePath) => {
-  var fileContents = [];
   fs.readFile(filePath, 'utf8', function (err, data) {
+    if(err) throw err;
    console.log (data);
-  }) 
+  })
 
 
 }
 
-var head = (str) => {
-  //var firstTen 
+var head = (filePath) => {
+  fs.readFile(filePath, 'utf8', function(err, data){
+    if(err) throw err;
+    var fileHead = data.split('\n').slice(0, 10).join('\n');
+    console.log(fileHead);
+  })
+}
+
+var tail = (filePath) => {
+  fs.readFile(filePath, 'utf8', function(err, data){
+    if(err) throw err;
+    var lines = data.split('\n');
+    var fileTail = lines.slice(lines.length - 10).join('\n');
+    console.log(fileTail);
+  })
 }
 
 function formatDate(date) {
@@ -57,5 +70,7 @@ module.exports = {
   date: date,
   ls: ls,
   echo: echo,
-  cat: cat
+  cat: cat,
+  head: head,
+  tail: tail
 }
