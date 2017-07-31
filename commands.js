@@ -18,6 +18,25 @@ function ls(){
   });
 };
 
+var echo = (cmd) => {
+  var str = cmd.slice(1).join(' ');  
+  console.log(str);
+  //return str;
+};
+
+var cat = (filePath) => {
+  var fileContents = [];
+  fs.readFile(filePath, 'utf8', function (err, data) {
+   console.log (data);
+  }) 
+
+
+}
+
+var head = (str) => {
+  //var firstTen 
+}
+
 function formatDate(date) {
   var monthNames = [
     "January", "February", "March",
@@ -36,5 +55,7 @@ function formatDate(date) {
 module.exports = {
   pwd: pwd,
   date: date,
-  ls: ls
+  ls: ls,
+  echo: echo,
+  cat: cat
 }
