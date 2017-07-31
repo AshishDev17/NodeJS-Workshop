@@ -29,6 +29,9 @@ process.stdin.on('data', function (data) {
   else if(cmd[0] === 'tail') {
     commands.tail(cmd[1]);
   }
+  else if(cmd[0] === 'curl'){
+    commands.curl(cmd[1]);
+  }
 
   //process.stdout.write('You typed: ' + cmd);
   process.stdout.write('\nprompt > ');

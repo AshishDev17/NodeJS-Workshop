@@ -1,4 +1,5 @@
 var fs = require('fs');
+var request = require('request');
 
 function pwd(){
   console.log(`${process.cwd()}`);
@@ -50,6 +51,16 @@ var tail = (filePath) => {
   })
 }
 
+var curl = (urlString) => {
+  var urlPath = `http://www.${urlString}`;
+  request(urlPath, function(err, response, body){
+    console.log('error;', err);
+    console.log('statuscode:', response && response.statusCode);
+    console.log('body:', body);
+  });
+};
+
+
 function formatDate(date) {
   var monthNames = [
     "January", "February", "March",
@@ -72,5 +83,6 @@ module.exports = {
   echo: echo,
   cat: cat,
   head: head,
-  tail: tail
+  tail: tail,
+  curl: curl
 }
